@@ -1,0 +1,60 @@
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="name">Name:</label>
+        <input
+            type="text"
+            id="name"
+            formControlName="name"
+        />
+    </div>
+    <div>
+        <label for="surname">Surname:</label>
+        <input
+            type="text"
+            id="surname"
+            formControlName="surname"
+        />
+    </div>
+    <div>
+        <label for="fiscalcode">Fiscal Code:</label>
+        <input
+            type="text"
+            id="fiscalcode"
+            formControlName="fiscalcode"
+        /> 
+    </div>
+    @if (formGroup.get('fiscalcode')?.errors?.['fiscalCodeInvalid'] && 
+                 formGroup.get('fiscalcode')?.touched) {
+                <div class="error-box">
+                    <small>ID Invalid</small>
+                </div>
+            }
+    
+    <div formGroupName="passwordGroup">
+        <div>
+            <label for="password">Password:</label>
+            <input
+                type="password"
+                id="password"
+                formControlName="password"
+            />
+        </div>
+        <div>
+            <label for="cpass">Confirm Password:</label>
+            <input
+                type="password"
+                id="cpass"
+                formControlName="cpass"
+            />
+        </div>
+    </div>
+
+    @if (formGroup.get('passwordGroup')?.errors?.['passwordMismatch'] && 
+                 formGroup.get('passwordGroup.cpass')?.touched) {
+                <div class="error-box">
+                    <small>Password doesn't match</small>
+                </div>
+            }
+    
+    <button type="submit" [disabled]="formGroup.invalid">Registrati</button>
+</form>

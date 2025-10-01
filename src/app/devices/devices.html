@@ -1,0 +1,13 @@
+<!-- <<h1>Devices</h1>
+@for (device of devicesList$; track device.deviceId) {
+    <li (click)="navigateToDevice(device.deviceId, device.name)">
+        <strong>{{ device.name }}</strong> <small>(id: {{ device.deviceId }})</small>
+    </li>
+} -->
+<h1>Devices</h1>
+@if (devicesList$ | async; as devices){
+    <!-- {{devices | json}} -->
+    @for (device of devices; track device){
+        {{device.id}} - {{device.name}}
+    }
+}
