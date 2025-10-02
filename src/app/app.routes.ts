@@ -5,8 +5,8 @@ import { Devices } from './devices/devices';
 import { Device } from './device/device';
 import { deviceResolver } from './resolvers/device-resolver';
 import { authGuard } from './guards/auth-guard';
-import { DeviceInfo } from './device-info/device-info';
 import { Registration } from './registration/registration';
+import { Products } from './products/products';
 
 export const routes: Routes = [
     {
@@ -20,6 +20,10 @@ export const routes: Routes = [
     {
         path: 'registration',
         component: Registration
+    },
+    {
+        path: 'products',
+        component: Products
     },
     {
         path:'devices',

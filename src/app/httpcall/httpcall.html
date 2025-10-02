@@ -1,0 +1,60 @@
+<div class="httpcall-container">
+  <h2>Research Suggestion</h2>
+  
+  <form (ngSubmit)="onSubmit()">
+    
+    <div class="search-box">
+      <input 
+        type="text" 
+        [formControl]="searchControl"
+        class="search-input"
+        name="searchText"
+        #searchInput
+      >
+      <button 
+        *ngIf="searchControl.value" 
+        (click)="clearSearch()" 
+        type="button"  type="button"
+        class="clear-btn"
+      >
+      </button>
+    </div>
+
+    <button type="submit" style="display: none;">Search</button>
+
+  </form>
+
+
+  <ul *ngIf="suggestions.length > 0" class="suggestions-list">
+    <li 
+      *ngFor="let suggestion of suggestions"
+      (click)="selectSuggestion(suggestion)"
+      class="suggestion-item"
+    >
+      <span class="name">{{ suggestion.name }}</span>
+      <span class="category">{{ suggestion.category }}</span>
+    </li>
+  </ul>
+
+
+  <div *ngIf="searchControl.value && searchControl.value.length >= 2 && suggestions.length === 0 && !isLoading" 
+       class="no-results">
+    🤷‍♂️ Nessun risultato per "{{ searchControl.value }}"
+  </div>
+
+
+  <div *ngIf="selectedSuggestion" class="selected-item">
+     : 
+    <strong>{{ selectedSuggestion.name }}</strong> 
+    ({{ selectedSuggestion.category }})
+  </div>
+
+  <div class="form-state">
+    <small>
+      Form: 
+      {{ searchForm.touched ? 'TOUCHED' : 'PRISTINE' }} |
+      {{ searchForm.dirty ? 'DIRTY' : 'CLEAN' }} |
+      {{ searchForm.valid ? 'VALID' : 'INVALID' }}
+    </small>
+  </div>
+</div>
